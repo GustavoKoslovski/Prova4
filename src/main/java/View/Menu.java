@@ -51,10 +51,10 @@ public class Menu {
                     livroView.cadastrarLivro();
                     this.menuPrincipal();
                     break;
-                case 6:
-
-                    break;
                 case 5:
+                    livroView.listarLivrosPorBiblioteca();
+                    break;
+                case 6:
                     livroView.listarLivrosPorGenero();
                     break;
             }

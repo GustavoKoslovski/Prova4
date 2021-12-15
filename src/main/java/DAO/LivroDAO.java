@@ -1,7 +1,9 @@
 package DAO;
 
 import Factory.ConnectionFactory;
+import Model.Biblioteca;
 import Model.Livro;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -114,6 +116,35 @@ public class LivroDAO {
         }
     }
 
+
+
+    public List<Livro> listarLivrosPorBiblioteca(Long idBiblioteca){
+        String sql = "SELECT livros.nomeLivro, bibliotecas.idBiblioteca " +
+                "FROM livros " +
+                "INNER JOIN bibliotecas " +
+                "ON livros.idBiblioteca = bibliotecas.idBiblioteca " +
+                "WHERE bibliotecas.idBiblioteca = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            BibliotecaDAO bibliotecaDAO = new BibliotecaDAO();
+            preparedStatement.setLong(1, idBiblioteca);
+            bibliotecaDAO.selecionarBiblioteca(idBiblioteca);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Livro> listarLivrosPorBiblioteca = new ArrayList<>();
+
+            while (resultSet.next()) {
+                Livro livro = new Livro();
+                livro.setNomeLivro(resultSet.getString("nomeLivro"));
+                livro.setIdBiblioteca(resultSet.getInt("idBiblioteca"));
+                listarLivrosPorBiblioteca.add(livro);
+            }
+            return listarLivrosPorBiblioteca;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public List<Livro> listarLivros() {
         String sql = "SELECT * FROM livros";

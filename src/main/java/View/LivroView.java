@@ -1,5 +1,6 @@
 package View;
 
+import Controller.BibliotecaController;
 import Controller.LivroController;
 import Model.Biblioteca;
 import Model.Livro;
@@ -33,7 +34,7 @@ public class LivroView {
         livro.setIdBiblioteca(Long.parseLong(input.nextLine()));
 
         livroController.cadastrarLivro(livro);
-        System.out.println("\n" + livro);
+        System.out.println("\n" + "[" + livro.getNomeLivro() + "] cadastrado!");
 
     }
 
@@ -44,9 +45,26 @@ public class LivroView {
         System.out.print("Digite o ID do Genero que deseja listar: ");
         Long idGenero = input.nextLong();
 
-        List<Livro> livros = livroController.listarProdutosPorCategoria(idGenero);
+        List<Livro> livros = livroController.listarProdutosPorGenero(idGenero);
         System.out.println();
         System.out.println("---Produtos do Genero " + idGenero +"--------");
+        System.out.println();
+        for (int i = 0; i < livros.size(); i++) {
+            System.out.println("Livro : " + livros.get(i).getNomeLivro()); ;
+        }
+        System.out.println();
+    }
+
+
+    public void listarLivrosPorBiblioteca(){
+
+        bibliotecaView.listarBibliotecas();
+        System.out.print("Digite o ID da biblioteca que deseja listar: ");
+        Long idBiblioteca = input.nextLong();
+
+        List<Livro> livros = livroController.listarLivroPorBiblioteca(idBiblioteca);
+        System.out.println();
+        System.out.println("-Livros desta biblioteca " + idBiblioteca +"--------");
         System.out.println();
         for (int i = 0; i < livros.size(); i++) {
             System.out.println("Livro : " + livros.get(i).getNomeLivro()); ;

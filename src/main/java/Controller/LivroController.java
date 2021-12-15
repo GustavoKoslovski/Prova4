@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.LivroDAO;
+import Model.Biblioteca;
 import Model.Livro;
 
 import java.util.List;
@@ -15,8 +16,11 @@ public class LivroController {
     public List<Livro> listarLivros() {
         return livroDAO.listarLivros();
     }
-    public List<Livro> listarProdutosPorCategoria(Long idCategoria) {
+    public List<Livro> listarProdutosPorGenero(Long idCategoria) {
         return livroDAO.listarLivrosPorGenero(idCategoria);
+    }
+    public List<Livro> listarLivroPorBiblioteca(Long idBiblioteca) {
+        return livroDAO.listarLivrosPorBiblioteca(idBiblioteca);
     }
     public Livro selecionarProduto(long idProduto) {
         return livroDAO.selecionarLivro(idProduto);

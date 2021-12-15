@@ -20,7 +20,7 @@ public class BibliotecaView {
         biblioteca.setNomeBiblioteca(input.nextLine());
 
         bibliotecaController.cadastrarBiblioteca(biblioteca);
-        System.out.println("\n" + biblioteca.getNomeBiblioteca() + "cadastrada!");
+        System.out.println("\n" + "[" + biblioteca.getNomeBiblioteca() + "] cadastrada!");
     }
 
     public void listarBibliotecas() {

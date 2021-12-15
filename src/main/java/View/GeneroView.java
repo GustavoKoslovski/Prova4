@@ -19,7 +19,7 @@ public class GeneroView {
         genero.setNomeGenero(input.nextLine());
 
         generoController.cadastrarGenero(genero);
-        System.out.println("\n" + genero.getNomeGenero() + "cadastrado!");
+        System.out.println("\n" + "["+ genero.getNomeGenero() + "] cadastrado!");
     }
 
     public void editarGenero(){
